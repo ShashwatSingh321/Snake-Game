@@ -90,6 +90,7 @@ function startGame() {
   gameInterval = setInterval(draw, 150);
 }
 
+// Handle keyboard input
 document.addEventListener("keydown", (e) => {
   if (e.key === "ArrowUp" && direction !== "DOWN") direction = "UP";
   if (e.key === "ArrowDown" && direction !== "UP") direction = "DOWN";
@@ -97,17 +98,25 @@ document.addEventListener("keydown", (e) => {
   if (e.key === "ArrowRight" && direction !== "LEFT") direction = "RIGHT";
 });
 
-document.getElementById("up").addEventListener("click", () => {
-  if (direction !== "DOWN") direction = "UP";
-});
-document.getElementById("down").addEventListener("click", () => {
-  if (direction !== "UP") direction = "DOWN";
-});
-document.getElementById("left").addEventListener("click", () => {
-  if (direction !== "RIGHT") direction = "LEFT";
-});
-document.getElementById("right").addEventListener("click", () => {
-  if (direction !== "LEFT") direction = "RIGHT";
+// Handle button clicks (prevent default behavior)
+["touchstart", "mousedown"].forEach((eventType) => {
+  document.getElementById("up").addEventListener(eventType, (e) => {
+    e.preventDefault();
+    if (direction !== "DOWN") direction = "UP";
+  });
+  document.getElementById("down").addEventListener(eventType, (e) => {
+    e.preventDefault();
+    if (direction !== "UP") direction = "DOWN";
+  });
+  document.getElementById("left").addEventListener(eventType, (e) => {
+    e.preventDefault();
+    if (direction !== "RIGHT") direction = "LEFT";
+  });
+  document.getElementById("right").addEventListener(eventType, (e) => {
+    e.preventDefault();
+    if (direction !== "LEFT") direction = "RIGHT";
+  });
 });
 
+// Start game
 resetGame();
