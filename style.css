@@ -1,72 +1,99 @@
 body {
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background-color: #333;
-            color: #fff;
-            font-family: Arial, sans-serif;
-            height: 100vh;
-        }
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #121212, #1c1c1c);
+    color: #fff;
+    font-family: "Poppins", Arial, sans-serif;
+    height: 100vh;
+    overflow: hidden; /* Prevent scrolling */
+}
 
-        canvas {
-            background-color: #000;
-            border: 2px solid #fff;
-        }
+canvas {
+    background: radial-gradient(circle, #000 60%, #222);
+    border: 3px solid #fff;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.8);
+    border-radius: 8px;
+    max-width: 90%; /* Make canvas responsive */
+    max-height: 90%;
+}
 
-        .controls {
-            display: none; 
-            margin-top: 10px;
-            flex-wrap: wrap;
-            width: 140px; 
-        }
+.controls {
+    display: none; /* Hidden by default for larger screens */
+    margin-top: 15px;
+    gap: 8px;
+    flex-wrap: wrap;
+    width: 140px; /* Ensure proper alignment */
+    justify-content: center;
+    z-index: 1000; /* Keep controls above other elements */
+    position: relative; /* Keeps buttons below canvas on small screens */
+}
 
-        .button {
-            width: 60px;
-            height: 60px;
-            margin: 5px;
-            background-color: #444;
-            color: #fff;
-            font-size: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 8px;
-            cursor: pointer;
-            border: none;
-        }
+.button {
+    width: 50px; /* Compact size for buttons */
+    height: 50px;
+    margin: 5px;
+    background: linear-gradient(135deg, #444, #666);
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%; /* Make buttons circular */
+    cursor: pointer;
+    border: 2px solid #999;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.6);
+    transition: all 0.2s ease-in-out;
+}
 
-        .button:active {
-            background-color: #555;
-        }
+.button:hover {
+    transform: scale(1.1); /* Add hover effect */
+    background: linear-gradient(135deg, #666, #888);
+}
 
-        .score {
-            margin: 10px 0;
-            font-size: 20px;
-        }
+.button:active {
+    background: linear-gradient(135deg, #555, #777);
+    transform: scale(1); /* Reset size on click */
+}
 
-        @media (max-width: 768px) {
-            .controls {
-                display: grid; 
-                grid-template-columns: repeat(3, 60px);
-                justify-content: center;
-                gap: 5px;
-            }
+.score {
+    margin: 15px 0;
+    font-size: 22px; /* Adjusted font size */
+    text-align: center;
+    font-weight: bold;
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.6);
+}
 
-            #up {
-                grid-column: 2;
-            }
+@media (max-width: 768px) {
+    .controls {
+        display: grid; /* Display controls only for smaller screens */
+        grid-template-columns: repeat(3, 50px);
+        gap: 8px; /* Space between buttons */
+        margin-top: 10px;
+    }
 
-            #left {
-                grid-column: 1;
-            }
+    #up {
+        grid-column: 2; /* Center the 'Up' button */
+    }
 
-            #down {
-                grid-column: 2;
-            }
+    #left {
+        grid-column: 1; /* Place 'Left' on the left */
+    }
 
-            #right {
-                grid-column: 3;
-            }
-        }
+    #down {
+        grid-column: 2; /* Center the 'Down' button */
+    }
+
+    #right {
+        grid-column: 3; /* Place 'Right' on the right */
+    }
+}
+
+@media (min-width: 769px) {
+    .controls {
+        display: none; /* Hide controls on larger screens */
+    }
+}
